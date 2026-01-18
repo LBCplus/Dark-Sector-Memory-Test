@@ -1,0 +1,61 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+type: software
+title: "Dark Sector Memory Test: Probing Dark Matter and Dark Energy History-Dependence via Cluster Mergers"
+abstract: >-
+  A model-agnostic observational framework for testing whether gravitational 
+  lensing encodes kinematic history beyond the instantaneous matter distribution.
+  Tests predictions from superfluid dark matter, non-Markovian EFT, and nonlocal 
+  gravity using morphological correlations between lensing residuals and merger 
+  kinematics in galaxy clusters. This is the first systematic test for dark-sector
+  memory effects in gravitational lensing.
+authors:
+  - family-names: "[Your Last Name]"
+    given-names: "[Your First Name]"
+    orcid: "https://orcid.org/0000-0000-0000-0000"
+    affiliation: "[Your Institution]"
+version: "1.0.0"
+date-released: "2026-01-18"
+license: MIT
+repository-code: "https://github.com/[username]/dark-sector-memory-test"
+url: "https://github.com/[username]/dark-sector-memory-test"
+keywords:
+  - dark matter
+  - dark energy
+  - gravitational lensing
+  - galaxy clusters
+  - cluster mergers
+  - superfluid dark matter
+  - nonlocal gravity
+  - cosmology
+  - astrophysics
+references:
+  - type: article
+    authors:
+      - family-names: Sivakumar
+        given-names: A.
+    title: "Revealing turbulent dark matter via merging of self-gravitating condensates"
+    journal: "Physical Review D"
+    volume: 111
+    pages: "083511"
+    year: 2025
+    doi: "10.1103/PhysRevD.111.083511"
+  - type: article
+    authors:
+      - family-names: Chaudhuri
+        given-names: S.
+    title: "EFT of Non-Markovian U(1)_X Breaking"
+    year: 2025
+    identifiers:
+      - type: other
+        value: "arXiv:2509.22293"
+  - type: article
+    authors:
+      - family-names: Grayson
+        given-names: J.
+    title: "BUFFALO wild wings: A high-precision free-form lens model of MACS J0416.1−2403"
+    journal: "Monthly Notices of the Royal Astronomical Society"
+    volume: 536
+    pages: "2690"
+    year: 2024
+    doi: "10.1093/mnras/stae2123"

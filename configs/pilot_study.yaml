@@ -1,0 +1,53 @@
+# Dark Sector Memory Test - Pilot Study Configuration
+# ===================================================
+
+study:
+  name: "DSMT Pilot Study"
+  version: "1.0"
+
+sample:
+  clusters:
+    - name: "MACSJ0416"
+      redshift: 0.396
+      lens_model: "buffalo_grayson2024"
+      
+    - name: "Abell2146" 
+      redshift: 0.232
+      lens_model: "literature"
+      
+    - name: "JKCS041"
+      redshift: 1.95
+      lens_model: "literature"
+      
+    - name: "Abell2744"
+      redshift: 0.308
+      lens_model: "hff_cats"
+      
+    - name: "RXJ2129"
+      redshift: 0.235
+      lens_model: "clash"
+
+analysis:
+  metrics:
+    - dipole
+    - quadrupole
+    - tail_alignment
+    - asymmetry
+    - centroid_offset
+    - power_spectrum
+    
+  baseline:
+    method: "nfw_multipole"  # or "simulation_matched"
+    multipole_order: 2
+    
+  statistics:
+    correlation_method: "spearman"
+    n_bootstrap: 10000
+    fdr_threshold: 0.05
+    alpha: 0.05
+
+output:
+  save_residual_maps: true
+  save_metric_uncertainties: true
+  figure_format: "png"
+  figure_dpi: 300
