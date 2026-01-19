@@ -10,7 +10,7 @@
 
 Multiple theoretical frameworks predict that gravitational lensing should encode kinematic history beyond the instantaneous matter distribution. Superfluid dark matter exhibits velocity-dependent phase transitions that produce turbulent wakes in mergers (Sivakumar et al. 2025); non-Markovian effective field theories retain memory kernels from integrated-out heavy fields (Chaudhuri et al. 2025); and nonlocal gravity couples present dynamics to past stress-energy (Maggiore & Mancarella 2014). Despite these predictions, no systematic observational test exists for correlations between lensing convergence residuals and merger infall kinematics.
 
-We present a model-agnostic methodology to test for such "wake signatures" in merging galaxy clusters. Using archival HST imaging, Chandra X-ray observations, and VLT/MUSE spectroscopy for a pilot sample of five well-characterized mergers—including MACSJ0416 with its unprecedented 237-image strong-lensing model (Grayson et al. 2024)—we: (1) reconstruct observed convergence maps from combined weak and strong lensing; (2) construct ΛCDM baseline models via parametric fitting and simulation matching using the Galaxy Cluster Merger Catalog (ZuHone et al. 2018); (3) compute residual maps Δκ = κ_obs − κ_baseline; (4) measure six morphological metrics quantifying residual structure; and (5) infer merger kinematic parameters through Bayesian forward-modeling.
+We present a model-agnostic methodology to test for such "wake signatures" in merging galaxy clusters. Using archival HST imaging, Chandra X-ray observations, and VLT/MUSE spectroscopy for a pilot sample of three well-characterized mergers with published kinematic constraints—Abell 2146 (v_infall ~ 2700 km/s, Mach 2.3; Russell et al. 2012), Abell 2744 (~2.1 Ms Chandra + JWST UNCOVER; Chadayammuri et al. 2024), and MACSJ0416 with its unprecedented 237-image strong-lensing model (Grayson et al. 2024)—we: (1) reconstruct observed convergence maps from combined weak and strong lensing; (2) construct ΛCDM baseline models via parametric fitting and simulation matching using the Galaxy Cluster Merger Catalog (ZuHone et al. 2018); (3) compute residual maps Δκ = κ_obs − κ_baseline; (4) measure six morphological metrics quantifying residual structure; and (5) test for correlations with published merger kinematics.
 
 We test for Spearman correlations between morphological metrics and infall velocity, comparing observed correlations to null distributions from 10,000 ΛCDM-matched bootstrap realizations. [RESULTS TO BE INSERTED]. Our analysis establishes the first observational framework for testing history-dependent dark-sector effects in gravitational lensing, addressing a specific gap identified by Cognola et al. (2022) who showed that standard lensing analyses cannot distinguish nonlocal gravity from GR.
 
@@ -63,7 +63,7 @@ Our proposed test directly addresses this gap with a falsifiable, model-agnostic
 
 We present a systematic observational framework to test for kinematic-history wake signatures in cluster mergers. Our approach is deliberately theory-independent: we test whether lensing residual morphology correlates with infall velocity, impact parameter, or collision timescale, regardless of which (if any) theoretical framework might explain such correlations. The null hypothesis (ΛCDM) predicts no such correlations beyond scatter from projection effects and measurement uncertainties.
 
-We apply this methodology to a pilot sample of five merging clusters with excellent multi-wavelength coverage, anchored by MACSJ0416 with its recently published ultra-high-precision lens model (Grayson et al. 2024). Even with this limited sample, we can detect very strong correlations (|r| > 0.85) with ~70% power, establishing the framework for expanded studies.
+We apply this methodology to a pilot sample of three merging clusters with the strongest available kinematic constraints, anchored by Abell 2146 (the best-calibrated merger kinematics), Abell 2744 (deepest X-ray + JWST lensing), and MACSJ0416 (most precise lens model). With three clusters we have limited statistical power, but can detect very strong correlations (|r| > 0.9) and establish the framework for expanded Phase 2 studies including JKCS041 (z=1.95).
 
 This paper is organized as follows. Section 2 describes our cluster sample and data. Section 3 details the methodology. Section 4 presents the statistical framework. Section 5 reports results. Section 6 discusses implications. Section 7 concludes.
 
@@ -73,22 +73,30 @@ This paper is organized as follows. Section 2 describes our cluster sample and d
 
 ### 2.1 Sample Selection
 
-We select a pilot sample of five merging clusters satisfying stringent criteria:
+We select a pilot sample of three merging clusters with the strongest joint constraints on both lensing convergence and merger kinematics. Rather than pursuing a larger sample with heterogeneous data quality, we focus on systems where both observables are well-determined, enabling a meaningful test of correlation.
+
+Selection criteria:
 - Deep HST imaging enabling weak lensing shear measurement to R ~ 28 mag
 - Published strong lensing models with spectroscopically confirmed multiple images
-- Chandra X-ray observations with sufficient depth for temperature mapping
-- Spectroscopic coverage for kinematic analysis
-- Clear morphological indication of ongoing or recent major merger
+- Chandra X-ray observations with sufficient depth for temperature mapping or shock identification
+- **Published merger kinematic constraints** (infall velocity, Mach number, or collision timescale)
 
-**Table 1: Pilot Sample Properties**
+**Table 1: Pilot Sample with Published Kinematic Constraints**
 
-| Cluster | z | M_200 (10¹⁴ M☉) | Merger Status | Primary Data |
-|---------|---|-----------------|---------------|--------------|
-| MACSJ0416.1-2403 | 0.396 | 9.1 | Ongoing merger | CLASH+HFF+BUFFALO, MUSE |
-| Abell 2146 | 0.232 | 6.8 | Post-merger (shock) | Chandra 400ks, GMOS |
-| JKCS041 | 1.95 | 2.5 | High-z merger | eROSITA, SZ |
-| Abell 2744 | 0.308 | 14.0 | Complex multi-merger | CLASH+HFF, VLT |
-| RX J2129 | 0.235 | 5.2 | Merging | CLASH, MUSE |
+| Cluster | z | v_infall (km/s) | Mach | t_coll (Gyr) | Kinematic Source |
+|---------|---|-----------------|------|--------------|------------------|
+| Abell 2146 | 0.232 | 2700 (+400/−300) | 2.3±0.2 | 0.1–0.2 | Shock (Russell+ 2012) |
+| Abell 2744 | 0.308 | 1800–2200 | ~1.2 | 0.5–0.6 | X-ray+sims (Chadayammuri+ 2024) |
+| MACSJ0416 | 0.396 | 1200–2000 | — | post-pericenter | Dynamical (Jauzac+ 2015) |
+
+**Sample rationale:**
+- **Abell 2146** provides the best-calibrated kinematics in the literature: direct Mach number measurements from bow shock (M=2.3±0.2) and upstream shock (M=1.6±0.1), yielding plane-of-sky shock velocities of v_bow = 2700 (+400/−300) km/s and v_upstream = 2400±300 km/s (Russell et al. 2012). Simulation-based modeling (Kim et al. 2021) confirms the merger geometry at ~0.1–0.2 Gyr post-pericenter.
+- **Abell 2744** has the deepest X-ray data (~2.1 Ms Chandra) with recent multiwavelength merger modeling (Chadayammuri et al. 2024) that combines X-ray, radio, optical, and JWST UNCOVER strong-lensing convergence. Their best-fit scenario: head-on N–S major merger 0.5–0.6 Gyr ago, followed by NW subcluster first infall.
+- **MACSJ0416** has the most precise lens model ever constructed (Grayson et al. 2024), though kinematic constraints are weaker. Jauzac et al. (2015) characterize it as an ongoing merger between two comparable-mass subclusters with characteristic relative velocities of order 1200–2000 km/s, likely observed post–first pericenter.
+
+**Excluded clusters:** RX J2129.7+0005 was initially considered but excluded because it is not a canonical binary merger—most work treats it as a relaxed strong-lensing cluster with substructure rather than a system with measurable two-body infall kinematics.
+
+**Phase 2 extension:** JKCS041 (z=1.95) will extend the sample to high redshift. Finner et al. (2024) provide dedicated merger simulations with synthetic lensing maps and a best-fit configuration at ~0.3 Gyr post-pericenter, though direct Mach number measurements are unavailable at current data quality.
 
 ### 2.2 MACSJ0416: The Anchor Target
 
@@ -105,19 +113,46 @@ JWST PEARLS observations (2024-2025) have increased the total multiple-image cou
 
 ### 2.3 Abell 2146: Kinematic Benchmark
 
-Abell 2146 provides the best-characterized merger kinematics in our sample. Russell et al. (2012) analyzed 400 ks of Chandra observations, identifying:
-- Clear shock fronts with Mach number M ~ 2.3 ± 0.3
-- Temperature jumps yielding shock velocity v_shock ~ 2200 ± 300 km/s
-- Inferred infall velocity v_infall ~ 2000-3500 km/s
+Abell 2146 provides the best-characterized merger kinematics in our sample and serves as the calibration anchor. Russell et al. (2012) analyzed 400 ks of Chandra observations, identifying:
+- **Bow shock Mach number**: M_bow = 2.3 ± 0.2
+- **Upstream shock Mach number**: M_upstream = 1.6 ± 0.1
+- **Bow shock velocity**: v_bow = 2700 (+400/−300) km/s (plane of sky)
+- **Upstream shock velocity**: v_upstream = 2400 ± 300 km/s
+- **Time since pericenter**: ~0.1–0.2 Gyr
 
-Spectroscopic analysis by Pratt et al. (2014) using Gemini/GMOS provides independent velocity constraints from cluster member kinematics.
+The merger geometry is roughly in the plane of the sky with small impact parameter, making velocity projection corrections minimal. Kim et al. (2021) performed idealized GAMER-2 merger simulations to fit Abell 2146's configuration, providing additional validation of the Russell et al. kinematic picture.
 
-### 2.4 Data Access
+Strong-lensing mass modeling by Coleman et al. (2017) maps the mass distribution using HST observations; we adopt their parametric LENSTOOL model for baseline construction.
 
-All data are publicly available:
-- **Convergence maps**: MAST Frontier Fields archive (https://archive.stsci.edu/prepds/frontier/lensmodels/)
-- **X-ray data**: HEASARC Chandra archive
-- **Spectroscopy**: ESO archive (MUSE), SDSS DR17
+### 2.4 Abell 2744: Multiwavelength Benchmark
+
+Abell 2744 ("Pandora's Cluster") is a complex multiple merger with the deepest X-ray observations of any cluster in our sample. Chadayammuri et al. (2024) combined ~2.1 Ms Chandra data with radio, optical, and JWST UNCOVER strong-lensing convergence, finding:
+- **Best-fit scenario**: Head-on N–S major merger 0.5–0.6 Gyr ago, plus NW subcluster first infall
+- **Line-of-sight velocity separation**: Δcz ≈ 4000–4500 km/s between main components
+- **NW subcluster shock**: Mach ~1.2, implying v_merge ~ 1800–2200 km/s
+
+Their analysis reveals that three cluster-scale halos consistent with lensing constraints underproduce observed convergence and X-ray surface brightness, suggesting an additional large-scale overdensity—precisely the kind of residual our methodology aims to characterize.
+
+Lensing convergence maps from CATS and GRALE teams are available through MAST Frontier Fields.
+
+### 2.5 Data Access
+
+### 2.5 Data Access
+
+**MACSJ0416 and Abell 2744 convergence maps:**
+- MAST Frontier Fields lens model index: https://archive.stsci.edu/prepds/frontier/lensmodels/
+- MACSJ0416 CATS model: https://archive.stsci.edu/prepds/frontier/lensmodels/macs0416/CATS/
+- MACSJ0416 GRALE model: https://archive.stsci.edu/prepds/frontier/lensmodels/macs0416/GRALE/
+- Abell 2744 CATS model: https://archive.stsci.edu/prepds/frontier/lensmodels/abell2744/CATS/
+- Abell 2744 GRALE model: https://archive.stsci.edu/prepds/frontier/lensmodels/abell2744/GRALE/
+
+Convergence maps (kappa.fits) are provided at multiple source redshifts (z=1, 2, 4, 9).
+
+**Abell 2146 convergence map:** Coleman et al. (2017) provide parametric LENSTOOL model parameters but did not deposit a public FITS convergence map. We reconstruct κ from their published parameters, or obtain the original map via author correspondence.
+
+**X-ray data:** HEASARC Chandra archive (Abell 2146: ObsID 13023; Abell 2744: merged 2.1 Ms dataset)
+
+**Spectroscopy:** ESO archive (VLT/MUSE), Gemini archive (GMOS)
 
 ---
 
