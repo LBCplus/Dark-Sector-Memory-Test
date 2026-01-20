@@ -10,15 +10,14 @@ abstract: >-
   kinematics in galaxy clusters. This is the first systematic test for dark-sector
   memory effects in gravitational lensing.
 authors:
-  - family-names: "[Your Last Name]"
-    given-names: "[Your First Name]"
-    orcid: "https://orcid.org/0000-0000-0000-0000"
-    affiliation: "[Your Institution]"
+  - family-names: "Barrera Castañón"
+    given-names: "Luis"
+    affiliation: "Independent Researcher"
 version: "1.0.0"
 date-released: "2026-01-18"
 license: MIT
-repository-code: "https://github.com/[username]/dark-sector-memory-test"
-url: "https://github.com/[username]/dark-sector-memory-test"
+repository-code: "https://github.com/LBCplus/Dark-Sector-Memory-Test"
+url: "https://github.com/LBCplus/Dark-Sector-Memory-Test"
 keywords:
   - dark matter
   - dark energy
