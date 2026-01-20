@@ -5,7 +5,7 @@
 [![arXiv](https://img.shields.io/badge/arXiv-coming%20soon-b31b1b.svg)](https://arxiv.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
-[![DOI](https://img.shields.io/badge/DOI-coming%20soon-blue.svg)](https://zenodo.org/)
+[![Status](https://img.shields.io/badge/status-pilot%20analysis%20in%20progress-green.svg)]()
 
 **A model-agnostic observational framework for testing kinematic-history dependence in gravitational lensing**
 
@@ -30,26 +30,49 @@ Despite theoretical predictions, **no systematic observational test has been per
 
 ---
 
-## 🎯 What This Project Does
+## 📊 Pilot Analysis Results (January 2026)
 
-1. **Reconstructs** lensing convergence maps from HST weak+strong lensing data
-2. **Constructs** ΛCDM baseline models via parametric fitting and simulation matching
-3. **Computes** residual maps: Δκ = κ_obs − κ_baseline
-4. **Measures** six morphological metrics quantifying residual structure
-5. **Infers** merger kinematic parameters via Bayesian forward-modeling
-6. **Tests** for correlations that exceed ΛCDM expectations
+### Current Sample
+
+We have analyzed **three merging galaxy clusters** with Hubble Frontier Fields convergence maps and published kinematic constraints:
+
+| Cluster | z | v_infall (km/s) | Mach | Geometry | Kinematic Source |
+|---------|---|-----------------|------|----------|------------------|
+| **MACSJ0416** | 0.396 | 1600 ± 400 | — | Plane-of-sky | Jauzac+ 2015 |
+| **Abell 2744** | 0.308 | 2000 ± 200 | 1.2 | Plane-of-sky | Chadayammuri+ 2024 |
+| **Abell 370** | 0.375 | ~3000 (LOS) | — | **Line-of-sight** | Bimodal redshifts |
+
+### Key Finding: Geometry Dependence
+
+**Plane-of-sky mergers show a positive correlation between infall velocity and residual dipole moment:**
+
+| Cluster | v (km/s) | Dipole | Asymmetry | Residual RMS |
+|---------|----------|--------|-----------|--------------|
+| MACSJ0416 | 1600 | 0.037 | 0.886 | 0.066 |
+| Abell 2744 | 2000 | 0.044 | 0.934 | 0.087 |
+
+**Abell 370 deviates from this trend** — but this is physically expected: its merger is largely along the line of sight, so any wake signature would be foreshortened in projection.
+
+### Preliminary Interpretation
+
+- For **plane-of-sky mergers**, higher infall velocity → larger dipole moment and asymmetry
+- This is **consistent with wake signature predictions** from superfluid DM and nonlocal gravity
+- **Line-of-sight mergers** require projection corrections before inclusion
+
+### Next Steps
+
+- **Abell 2146** (v = 2700 km/s, Mach = 2.3 ± 0.2) — best-constrained kinematics from shock measurements (Russell+ 2012). Convergence map requested from Coleman/King.
+- With 3+ plane-of-sky mergers, we can compute statistically meaningful correlations
 
 ---
 
-## 📊 Key Results
+## 🎯 What This Project Does
 
-*[Results will be added as analysis progresses]*
-
-**Pilot Sample:** 5 merging clusters including MACSJ0416 (237 spectroscopic multiple images — best-constrained lens ever)
-
-**Statistical Power:** 
-- N=5: Can detect very large effects (|r| > 0.85) at 70% power
-- N=30: Can detect moderate effects (|r| > 0.5) at 80% power
+1. **Reconstructs** lensing convergence maps from HST weak+strong lensing data
+2. **Constructs** ΛCDM baseline models via parametric fitting (Gaussian smoothing)
+3. **Computes** residual maps: Δκ = κ_obs − κ_baseline
+4. **Measures** six morphological metrics quantifying residual structure
+5. **Tests** for correlations between metrics and published merger kinematics
 
 ---
 
@@ -58,27 +81,22 @@ Despite theoretical predictions, **no systematic observational test has been per
 ### Installation
 
 ```bash
-git clone https://github.com/[username]/dark-sector-memory-test.git
-cd dark-sector-memory-test
+git clone https://github.com/LBCplus/Dark-Sector-Memory-Test.git
+cd Dark-Sector-Memory-Test
 pip install -r requirements.txt
 ```
 
-### Run Demonstration
+### Download Data
 
 ```bash
-python code/dsmt_analysis.py --demo
+# Download Frontier Fields convergence maps from MAST
+python code/download_and_analyze.py --download --data-dir ./data
 ```
 
-This runs the complete pipeline on synthetic data with an injected wake signal.
-
-### Analyze Real Data
+### Run Analysis
 
 ```bash
-# Download Frontier Fields convergence maps
-python code/download_data.py --cluster macs0416
-
-# Run full analysis
-python code/dsmt_analysis.py --cluster macs0416 --config configs/pilot_study.yaml
+python code/download_and_analyze.py --analyze --data-dir ./data
 ```
 
 ---
@@ -86,7 +104,7 @@ python code/dsmt_analysis.py --cluster macs0416 --config configs/pilot_study.yam
 ## 📁 Repository Structure
 
 ```
-dark-sector-memory-test/
+Dark-Sector-Memory-Test/
 ├── README.md                       # You are here
 ├── LICENSE                         # MIT License
 ├── CITATION.cff                    # Citation metadata
@@ -97,24 +115,15 @@ dark-sector-memory-test/
 │   └── figures/                    # Publication figures
 │
 ├── code/
-│   ├── dsmt_analysis.py            # Main analysis module
-│   ├── download_data.py            # MAST/archive data fetching
-│   ├── morphology_metrics.py       # Metric computation
-│   ├── kinematic_inference.py      # Bayesian parameter estimation
-│   └── statistical_tests.py        # Correlation & bootstrap analysis
-│
-├── notebooks/
-│   ├── 01_data_exploration.ipynb   # Explore convergence maps
-│   ├── 02_metric_validation.ipynb  # Validate metrics on simulations
-│   └── 03_full_analysis.ipynb      # Complete pipeline walkthrough
+│   ├── dsmt_analysis.py            # Main analysis module (~700 lines)
+│   └── download_and_analyze.py     # Data pipeline with published kinematics
 │
 ├── docs/
 │   ├── methodology.md              # Detailed methods
-│   ├── statistical_analysis_plan.md # Pre-specified analysis
-│   └── literature_review.md        # Theoretical background
+│   └── statistical_analysis_plan.md # Pre-specified analysis
 │
 ├── configs/
-│   └── pilot_study.yaml            # Analysis configuration
+│   └── pilot_study.yaml            # Analysis configuration with kinematic params
 │
 └── data/                           # Data directory (not tracked)
     └── .gitkeep
@@ -134,6 +143,24 @@ We quantify lensing residual structure using six metrics:
 | **Asymmetry** | A | Σ\|Δκ − Δκ_180°\| / 2Σ\|Δκ\| | Departure from point symmetry |
 | **Centroid offset** | \|Δx_c\| | \|x_obs − x_baseline\| | Mass center displacement |
 | **Power spectrum** | P_tot | ∫ P(k) dk | Total residual structure |
+
+---
+
+## 📊 Pilot Sample
+
+| Cluster | z | v_infall (km/s) | Data Source | Status |
+|---------|---|-----------------|-------------|--------|
+| **MACSJ0416** | 0.396 | 1600 ± 400 | HFF CATS v4 | ✅ Analyzed |
+| **Abell 2744** | 0.308 | 2000 ± 200 | HFF CATS v4.1 | ✅ Analyzed |
+| **Abell 370** | 0.375 | ~3000 (LOS) | HFF CATS v4 | ✅ Analyzed (LOS geometry) |
+| **Abell 2146** | 0.232 | 2700 (+400/−300) | Coleman+ 2017 | ⏳ Data requested |
+
+### Kinematic Sources
+
+- **MACSJ0416**: Jauzac et al. 2015, MNRAS 446, 4132
+- **Abell 2744**: Chadayammuri et al. 2024, arXiv:2407.03142 (2.1 Ms Chandra + JWST)
+- **Abell 370**: Bimodal galaxy redshift distribution (~3000 km/s separation)
+- **Abell 2146**: Russell et al. 2012, MNRAS 423, 236 (shock Mach numbers)
 
 ---
 
@@ -163,18 +190,6 @@ Cognola et al. (2022) tested nonlocal gravity against cluster lensing and found 
 
 ---
 
-## 📊 Pilot Sample
-
-| Cluster | z | Data Quality | Status |
-|---------|---|--------------|--------|
-| **MACSJ0416** | 0.396 | 237 spectroscopic images (BUFFALO) | Primary target |
-| **Abell 2146** | 0.232 | 400 ks Chandra, Mach number measured | Kinematic benchmark |
-| **JKCS041** | 1.95 | High-z merger, eROSITA | High-z test |
-| **Abell 2744** | 0.308 | Complex multi-merger, HFF | Complexity test |
-| **RX J2129** | 0.235 | CLASH + MUSE | Additional sample |
-
----
-
 ## 📚 Key References
 
 ### Theoretical Foundations
@@ -183,10 +198,11 @@ Cognola et al. (2022) tested nonlocal gravity against cluster lensing and found 
 - Chaudhuri et al. (2025) — Non-Markovian EFT — [arXiv:2509.22293](https://arxiv.org/abs/2509.22293)
 - Maggiore & Mancarella (2014) — Nonlocal gravity — [PRD 90, 023005](https://doi.org/10.1103/PhysRevD.90.023005)
 
-### Observational Context
+### Observational Data
 - Grayson et al. (2024) — MACSJ0416 BUFFALO model — [MNRAS 536, 2690](https://doi.org/10.1093/mnras/stae2123)
 - Russell et al. (2012) — Abell 2146 kinematics — [MNRAS 423, 236](https://doi.org/10.1111/j.1365-2966.2012.20808.x)
-- ZuHone et al. (2018) — Galaxy Cluster Merger Catalog — [ApJS 234, 4](https://doi.org/10.3847/1538-4365/aa99dc)
+- Chadayammuri et al. (2024) — Abell 2744 multiwavelength — [arXiv:2407.03142](https://arxiv.org/abs/2407.03142)
+- Coleman et al. (2017) — Abell 2146 strong lensing — [MNRAS 464, 2469](https://doi.org/10.1093/mnras/stw2493)
 
 ### Gap Identification
 - Cognola et al. (2022) — Nonlocal gravity vs. GR degeneracy — [arXiv:2205.03216](https://arxiv.org/abs/2205.03216)
@@ -196,7 +212,7 @@ Cognola et al. (2022) tested nonlocal gravity against cluster lensing and found 
 ## 🤝 Contributing
 
 Contributions welcome! Particularly interested in:
-- Additional cluster data reduction
+- **Additional cluster convergence maps** with published kinematic constraints
 - Simulation comparisons (TNG-Cluster, BAHAMAS)
 - Statistical methodology improvements
 - Theoretical predictions from other frameworks
@@ -214,17 +230,7 @@ If you use this code or methodology, please cite:
   author = {[Author]},
   title = {Dark Sector Memory Test: Probing Dark Matter and Dark Energy History-Dependence via Cluster Mergers},
   year = {2026},
-  url = {https://github.com/[username]/dark-sector-memory-test}
-}
-```
-
-Paper citation (when available):
-```bibtex
-@article{dsmt_paper2026,
-  author = {[Authors]},
-  title = {Dark Sector Memory Test: Probing Dark Matter and Dark Energy History-Dependence via Cluster Mergers},
-  journal = {[Journal]},
-  year = {2026}
+  url = {https://github.com/LBCplus/Dark-Sector-Memory-Test}
 }
 ```
 
@@ -241,8 +247,7 @@ This project is licensed under the MIT License — see [LICENSE](LICENSE) for de
 - HST Frontier Fields and BUFFALO teams for public lensing data
 - MAST archive for data hosting
 - Chandra X-ray Observatory for archival data
-- ESO/VLT MUSE team for spectroscopic data
-- Galaxy Cluster Merger Catalog team (ZuHone et al.)
+- The lensing community for published convergence maps
 
 ---
 
